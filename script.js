@@ -4,7 +4,6 @@ var userInput = document.getElementById('user-input');
 
 function getAPI() {
     var userCity = userInput.value;
-    userCity = userCity.replace(/ /g, '');
     var openWeatherQueryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + userCity + "&appid=" + openWeatherKey;
     fetch(openWeatherQueryURL)
         .then(function(response) {
@@ -15,8 +14,12 @@ function getAPI() {
     });
 }
 
+userInput.addEventListener('submit', function(event) {
+    event.preventDefault();
+    getAPI();
+});
+
 fetchButton.addEventListener('click', function(event) {
     event.preventDefault();
     getAPI();
-    
 });
