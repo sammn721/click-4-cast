@@ -1,3 +1,7 @@
+.DS_Store
+
+**/api_key.js
+
 # Logs
 logs
 *.log
