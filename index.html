@@ -4,22 +4,61 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" href="styles.scss">
+    <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
 <body>
     <header>
-
+        <h2>Weather Dashboard</h2>
     </header>
     <main>
-        <div class="col-auto d-inline-flex flex-column p-2">
-            <label for="user-input" class="h3">Search for a City:</label>
-            <input class="form-control mb-2" name="user-input" id="user-input" type="text" placeholder="Seattle"/>
-            <button class="btn btn-primary" id="fetch-button">click</button>
+        <div class="col-12 col-md-3" id="city-select">
+            <form>
+                <div class="form-group d-flex flex-column p-2">
+                    <label for="user-input" class="h4">Search for a City:</label>
+                    <input class="form-control mb-3" name="user-input" id="user-input" type="text" placeholder="Seattle"/>
+                    <button class="btn btn-primary btn-sm" id="fetch-button">Search</button>
+                </div>
+            </form>
         </div>
-        <div id="forecast-container">
+        <div class="col-12 col-md-9 d-flex flex-column" id="forecast-window">
+            <div id="current">
 
+            </div>
+            <div class="card-group">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title"></h5>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title"></h5>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title"></h5>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title"></h5>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title"></h5>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </main>
