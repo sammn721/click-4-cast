@@ -1,5 +1,5 @@
 var fetchButton = document.getElementById('fetch-button');
-var userInput = document.getElementById('user-input');
+var cityInput = document.getElementById('city-input');
 
 
 function getAPI() {
@@ -10,11 +10,7 @@ function getAPI() {
     var onecallQueryURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + latitude + "&lon=" + longitude + "&appid=" + openWeatherKey;
     fetch(currentWeatherQueryURL)
         .then(function(response) {
-            if (response.ok) {
-                response.json().then(function (data) {
-                    displayForecast()
-                })
-            }
+            return response.json();
         })
         .then(function (data) {
             console.log(data);
@@ -29,14 +25,27 @@ function getAPI() {
     
 }
 
+// function forecast() {
+    
+// }
 
-userInput.addEventListener('submit', function(event) {
+cityInput.addEventListener('submit', function(event) {
     event.preventDefault();
     getAPI();
+    // forecast();
 });
 
 fetchButton.addEventListener('click', function(event) {
     event.preventDefault();
     getAPI();
+    // forecast();
+});
 
+cityButtons.addEventListener("click", function(event) {
+    
+    
+    if (event.target.matches("button")) {
+        var clickedCity = JSON.stringify(event.target.id);
+        getAPI()
+    }
 });
