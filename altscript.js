@@ -48,3 +48,17 @@ var getCurrentWeather = function (city) {
             alert('Unable to connect to OpenWeatherMap');
         });
 };
+
+var getFiveDay = function (lat, lon) {
+    var onecallURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&appid=" + openWeatherKey;
+
+    fetch(onecallURL).then(function (response) {
+        if (response.ok) {
+            response.json().then(function (data) {
+                displayForecast(data.items, lat, lon);
+            });
+        } else {
+            alert('Error: ' + response.statusText);
+        }
+    });
+};
