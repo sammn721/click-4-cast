@@ -31,3 +31,20 @@ var buttonClickHandler = function (event) {
     }
 }
 
+var getCurrentWeather = function (city) {
+    var currentWeatherURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + openWeatherKey;
+
+    fetch(currentWeatherURL)
+        .then(function (response) {
+            if (response.ok) {
+                response.json().then(function (data) {
+                    displayForecast(data, city);
+                });
+            } else {
+                alert('Error: ' + response.statusText);
+            }
+        })
+        .catch(function (error) {
+            alert('Unable to connect to OpenWeatherMap');
+        });
+};
