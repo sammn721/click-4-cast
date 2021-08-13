@@ -52,4 +52,11 @@ function searchByCity() {
         })
 }
 
+function searchButtonClick(event) {
+    event.preventDefault();
+    var buttonClicked = event.target.value;
+    cityQuery = buttonClicked;
+    searchByCity();
+}
+
 citySearchRender();
