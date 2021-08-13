@@ -34,22 +34,42 @@ function searchByCoords(lat, lon) {
     var queryURL = `${openWeatherURL}onecall?${lat}&${lon}&appid=${openWeatherKey}`
 
     fetch(queryURL)
+        .then(function (response) {
+            if(!response.ok) {
+                errorDisplay();
+                throw response.json();
+            }
+            return response.json();
+        })
         .then(function (city) {
             weatherRender(city);
 
         })
+        .catch(function (error) {
+            return error;
+        });
 }
 
 function searchByCity() {
     var queryURL = `${openWeatherURL}weather?q=${cityQuery}&appid=${openWeatherKey}`;
-    
+    console.log("before fetch");
     fetch(queryURL)
+        .then(function (response) {
+            if(!response.ok) {
+                errorDisplay();
+                throw response.json();
+            }
+            return response.json();
+        })
         .then(function (city) {
             cityQuery = city.name;
             var cityLat = `lat=${city.coord.lat}`;
             var cityLon = `lon=${city.coord.lon}`;
             searchByCoords(cityLat, cityLon);
         })
+        .catch(function (error) {
+            return error;
+        });
 }
 
 function citySearchSubmit(event) {
