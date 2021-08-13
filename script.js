@@ -1,5 +1,3 @@
-const { forStatement, forInStatement } = require("@babel/types");
-
 var openWeatherKey = "b630f221bd1295ec02183f26749a279c";
 var openWeatherURL = "https://api.openweathermap.org/data/2.5/";
 
@@ -8,12 +6,15 @@ var searchedCitiesEl = $('#searchedCities');
 var weatherEl = $('#weather');
 
 var cityQuery;
+var searchedCities = [];
+var searchedCitiesParsed = JSON.parse(localStorage.getItem('searchedCities'));
 
 function errorRender() {
     weatherEl.empty();
     weatherEl.append(`
     <h3>Location not found, please try again.</h3>
     `);
+}
 
 function citySearchRender() {
     citySearchEl.empty();
@@ -38,6 +39,10 @@ function weatherRender() {
 
     </div>
     `);
+}
+
+function saveCities() {
+    localStorage.setItem('searchedCities', JSON.stringify(searchedCities));
 }
     
 function searchByCoords(lat, lon) {
