@@ -30,13 +30,19 @@ function weatherRender() {
     `);
 }
 
+function errorRender() {
+    weatherEl.empty();
+    weatherEl.append(`
+    <h3>Location not found, please try again.</h3>
+    `);
+    
 function searchByCoords(lat, lon) {
     var queryURL = `${openWeatherURL}onecall?${lat}&${lon}&appid=${openWeatherKey}`
 
     fetch(queryURL)
         .then(function (response) {
             if(!response.ok) {
-                errorDisplay();
+                errorRender();
                 throw response.json();
             }
             return response.json();
@@ -52,11 +58,11 @@ function searchByCoords(lat, lon) {
 
 function searchByCity() {
     var queryURL = `${openWeatherURL}weather?q=${cityQuery}&appid=${openWeatherKey}`;
-    console.log("before fetch");
+    
     fetch(queryURL)
         .then(function (response) {
             if(!response.ok) {
-                errorDisplay();
+                errorRender();
                 throw response.json();
             }
             return response.json();
