@@ -3,7 +3,7 @@ var openWeatherURL = "https://api.openweathermap.org/data/2.5/";
 
 var citySearchEl = $('#citySearch');
 var searchedCitiesEl = $('#searchedCities');
-var currentForecastEl = $('#currentForecast');
+var weatherEl = $('#weather');
 
 var cityQuery;
 
@@ -14,8 +14,8 @@ function citySearchRender() {
     `)
 }
 
-function currentForecastRender() {
-    currentForecastEl.append(`
+function weatherRender() {
+    weatherEl.append(`
     <div id="current">
         <h3>${cityQuery}</h3>
         <p>Temp:</p>
@@ -25,8 +25,19 @@ function currentForecastRender() {
     </div>
     <div id="forecast">
         <h3>Five day forecast:</h3>
+
     </div>
-    `)
+    `);
+}
+
+function searchByCoords(lat, lon) {
+    var queryURL = `${openWeatherURL}onecall?${lat}&${lon}&appid=${openWeatherKey}`
+
+    fetch(queryURL)
+        .then(function (city) {
+            weatherRender(city);
+
+        })
 }
 
 function searchByCity() {
@@ -35,8 +46,10 @@ function searchByCity() {
     fetch(queryURL)
         .then(function (city) {
             cityQuery = city.name;
-            var
-        }
+            var cityLat = `lat=${city.coord.lat}`;
+            var cityLon = `lon=${city.coord.lon}`;
+            searchByCoords(cityLat, cityLon);
+        })
 }
 
 citySearchRender();
