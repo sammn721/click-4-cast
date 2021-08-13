@@ -29,4 +29,14 @@ function currentForecastRender() {
     `)
 }
 
+function searchByCity() {
+    var queryURL = `${openWeatherURL}weather?q=${cityQuery}&appid=${openWeatherKey}`;
+    
+    fetch(queryURL)
+        .then(function (city) {
+            cityQuery = city.name;
+            var
+        }
+}
+
 citySearchRender();
