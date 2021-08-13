@@ -52,11 +52,12 @@ function searchByCity() {
         })
 }
 
-function searchButtonClick(event) {
+function citySearchSubmit(event) {
     event.preventDefault();
-    var buttonClicked = event.target.value;
-    cityQuery = buttonClicked;
+    cityQuery = $('#cityQuery').val();
     searchByCity();
 }
+
+citySearchEl.on("submit", citySearchSubmit)
 
 citySearchRender();
