@@ -1,3 +1,5 @@
+const { forStatement, forInStatement } = require("@babel/types");
+
 var openWeatherKey = "b630f221bd1295ec02183f26749a279c";
 var openWeatherURL = "https://api.openweathermap.org/data/2.5/";
 
