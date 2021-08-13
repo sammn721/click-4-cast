@@ -9,14 +9,22 @@ var weatherEl = $('#weather');
 
 var cityQuery;
 
+function errorRender() {
+    weatherEl.empty();
+    weatherEl.append(`
+    <h3>Location not found, please try again.</h3>
+    `);
+
 function citySearchRender() {
+    citySearchEl.empty();
     citySearchEl.append(`
     <input type="search" class="form-control" id="cityQuery">
     <button type="submit" class ="btn" id="searchButton">Search</button>
-    `)
+    `);
 }
 
 function weatherRender() {
+    weatherEl.empty();
     weatherEl.append(`
     <div id="current">
         <h3>${cityQuery}</h3>
@@ -31,12 +39,6 @@ function weatherRender() {
     </div>
     `);
 }
-
-function errorRender() {
-    weatherEl.empty();
-    weatherEl.append(`
-    <h3>Location not found, please try again.</h3>
-    `);
     
 function searchByCoords(lat, lon) {
     var queryURL = `${openWeatherURL}onecall?${lat}&${lon}&appid=${openWeatherKey}`
