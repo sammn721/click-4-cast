@@ -1,5 +1,6 @@
 var fetchButton = document.getElementById('fetch-button');
 var cityInput = document.getElementById('city-input');
+var cityButtons = document.getElementById('city-buttons');
 
 
 function getAPI() {
@@ -46,6 +47,7 @@ cityButtons.addEventListener("click", function(event) {
     
     if (event.target.matches("button")) {
         var clickedCity = JSON.stringify(event.target.id);
-        getAPI()
+        console.log(clickedCity);
+
     }
 });
