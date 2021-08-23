@@ -19,7 +19,8 @@ function fiveDayRender(data) {
     var fiveDay = [];
     for(var i = 0; i < 5; i++) {
         fiveDay.push(`
-        <div class="col border forecast"
+        <div class="col border forecast">
+            <img src="https://openweathermap.org/img/wn/${data.daily[i].weather[0].icon}.png">
             <p>Temp: ${data.daily[i].temp.day}</p>
             <p>Wind: ${data.daily[i].wind_speed}</p>
             <p>Humidity: ${data.daily[i].humidity}</p>
@@ -35,10 +36,11 @@ function weatherRender(data) {
     weatherEl.append(`
         <div class="col border" id="current">
             <h3>${cityQuery}</h3>
-            <p>Temp:${data.current.temp}</p>
-            <p>Wind:${data.current.wind_speed}</p>
-            <p>Humidity:${data.current.humidity}</p>
-            <p>UV Index:${data.current.uvi}</p>
+            <img src="https://openweathermap.org/img/wn/${data.current.weather[0].icon}@2x.png">
+            <p>Temp: ${data.current.temp}</p>
+            <p>Wind: ${data.current.wind_speed}</p>
+            <p>Humidity: ${data.current.humidity}</p>
+            <p>UV Index: ${data.current.uvi}</p>
         </div>
         <h3>Five day forecast:</h3>
         <div class="col">
