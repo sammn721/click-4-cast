@@ -17,18 +17,15 @@ function errorRender() {
 
 function fiveDayRender(data) {
     var fiveDay = [];
-    console.log("forecast start")
-    
     for(var i = 0; i < 5; i++) {
         fiveDay.push(`
-        <div class="col"
+        <div class="col border forecast"
             <p>Temp: ${data.daily[i].temp.day}</p>
             <p>Wind: ${data.daily[i].wind_speed}</p>
             <p>Humidity: ${data.daily[i].humidity}</p>
             <p>UV Index: ${data.daily[i].uvi}</p>
         </div>
         `)
-        console.log("forecast complete");
     }
     return fiveDay.join("");
 }
