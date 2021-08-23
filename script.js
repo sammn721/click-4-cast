@@ -6,13 +6,29 @@ var searchedCitiesEl = $('#searchedCities');
 var weatherEl = $('#weather');
 
 var cityQuery;
-var searchedCities = [];
-var searchedCitiesParsed = JSON.parse(localStorage.getItem('searchedCities'));
+var searchedCities = JSON.parse(localStorage.getItem('searchedCities')) || [];
 
 function errorRender() {
     weatherEl.empty();
     weatherEl.append(`
     <h3>Location not found, please try again.</h3>
+    `);
+}
+
+function weatherRender(data) {
+    weatherEl.empty();
+    weatherEl.append(`
+    <div id="current">
+        <h3>${cityQuery}</h3>
+        <p>Temp:${data.current.temp}</p>
+        <p>Wind:${data.current.wind_speed}</p>
+        <p>Humidity:${data.current.humidity}</p>
+        <p>UV Index:${data.current.uvi}</p>
+    </div>
+    <div id="forecast">
+        <h3>Five day forecast:</h3>
+
+    </div>
     `);
 }
 
@@ -24,29 +40,23 @@ function citySearchRender() {
     `);
 }
 
-function weatherRender() {
-    weatherEl.empty();
-    weatherEl.append(`
-    <div id="current">
-        <h3>${cityQuery}</h3>
-        <p>Temp:</p>
-        <p>Wind:</p>
-        <p>Humidity:</p>
-        <p>UV Index:</p>
-    </div>
-    <div id="forecast">
-        <h3>Five day forecast:</h3>
-
-    </div>
-    `);
-}
-
 function saveCities() {
     localStorage.setItem('searchedCities', JSON.stringify(searchedCities));
 }
+
+// INCOMPLETE
+function searchedCitiesRender() {
+    citySearchRender();
+    for(var i = 0; i < searchedCities.length; i++) {
+        searchedCitiesEl.append(`
+        <button type="button" class="btn" value="${searchedCities[i]}">${searchedCities[i]}</button>
+        `);
+    }
+    saveCities();
+}
     
 function searchByCoords(lat, lon) {
-    var queryURL = `${openWeatherURL}onecall?${lat}&${lon}&appid=${openWeatherKey}`
+    var queryURL = `${openWeatherURL}onecall?${lat}&${lon}&units=imperial&appid=${openWeatherKey}`
 
     fetch(queryURL)
         .then(function (response) {
