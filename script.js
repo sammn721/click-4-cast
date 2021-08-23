@@ -19,7 +19,7 @@ function fiveDayRender(data) {
     var fiveDay = [];
     for(var i = 0; i < 5; i++) {
         fiveDay.push(`
-        <div class="col-auto forecast">
+        <div class="col p-2 mx-3 forecast">
             <p class="fs-5 fw-bold">${moment(data.daily[i].dt, "X").format("M/D/YYYY")}</p>
             <img src="https://openweathermap.org/img/wn/${data.daily[i].weather[0].icon}.png">
             <div id="dailyStats">
