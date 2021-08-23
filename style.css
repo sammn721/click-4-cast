@@ -17,5 +17,7 @@ h2 {
 }
 
 .forecast {
-    background-color: steelblue;
+    background-color: #557089;
+    color: #fff;
+    margin: 0 3px 0 3px;
 }
