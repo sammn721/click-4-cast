@@ -15,6 +15,22 @@ function errorRender() {
     `);
 }
 
+function fiveDayRender(data) {
+    var fiveDay = [];
+    console.log("forecast start")
+    
+    for(var i = 0; i < 5; i++) {
+        fiveDay.push(`
+        <p>Temp: ${data.daily[i].temp.day}</p>
+        <p>Wind: ${data.daily[i].wind_speed}</p>
+        <p>Humidity: ${data.daily[i].humidity}</p>
+        <p>UV Index: ${data.daily[i].uvi}</p>
+        `)
+        console.log("forecast complete");
+    }
+    return fiveDay.join("");
+}
+
 function weatherRender(data) {
     weatherEl.empty();
     weatherEl.append(`
@@ -26,8 +42,8 @@ function weatherRender(data) {
         <p>UV Index:${data.current.uvi}</p>
     </div>
     <div id="forecast">
-        <h3>Five day forecast:</h3>
-
+    <h3>Five day forecast:</h3>
+        ${fiveDayRender(data)}
     </div>
     `);
 }
@@ -68,7 +84,7 @@ function searchByCoords(lat, lon) {
         })
         .then(function (city) {
             weatherRender(city);
-
+            // saveCities();
         })
         .catch(function (error) {
             return error;
