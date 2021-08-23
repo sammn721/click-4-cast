@@ -21,10 +21,12 @@ function fiveDayRender(data) {
     
     for(var i = 0; i < 5; i++) {
         fiveDay.push(`
-        <p>Temp: ${data.daily[i].temp.day}</p>
-        <p>Wind: ${data.daily[i].wind_speed}</p>
-        <p>Humidity: ${data.daily[i].humidity}</p>
-        <p>UV Index: ${data.daily[i].uvi}</p>
+        <div class="col"
+            <p>Temp: ${data.daily[i].temp.day}</p>
+            <p>Wind: ${data.daily[i].wind_speed}</p>
+            <p>Humidity: ${data.daily[i].humidity}</p>
+            <p>UV Index: ${data.daily[i].uvi}</p>
+        </div>
         `)
         console.log("forecast complete");
     }
@@ -34,17 +36,19 @@ function fiveDayRender(data) {
 function weatherRender(data) {
     weatherEl.empty();
     weatherEl.append(`
-    <div id="current">
-        <h3>${cityQuery}</h3>
-        <p>Temp:${data.current.temp}</p>
-        <p>Wind:${data.current.wind_speed}</p>
-        <p>Humidity:${data.current.humidity}</p>
-        <p>UV Index:${data.current.uvi}</p>
-    </div>
-    <div id="forecast">
-    <h3>Five day forecast:</h3>
-        ${fiveDayRender(data)}
-    </div>
+        <div class="col border" id="current">
+            <h3>${cityQuery}</h3>
+            <p>Temp:${data.current.temp}</p>
+            <p>Wind:${data.current.wind_speed}</p>
+            <p>Humidity:${data.current.humidity}</p>
+            <p>UV Index:${data.current.uvi}</p>
+        </div>
+        <h3>Five day forecast:</h3>
+        <div class="col">
+            <div class="row" id="forecast">
+                ${fiveDayRender(data)}
+            </div>
+        </div>
     `);
 }
 
@@ -52,7 +56,7 @@ function citySearchRender() {
     citySearchEl.empty();
     citySearchEl.append(`
     <input type="search" class="form-control" id="cityQuery">
-    <button type="submit" class ="btn" id="searchButton">Search</button>
+    <button type="submit" class ="btn btn-primary" id="searchButton">Search</button>
     `);
 }
 
