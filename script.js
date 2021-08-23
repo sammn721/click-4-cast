@@ -24,8 +24,8 @@ function fiveDayRender(data) {
             <img src="https://openweathermap.org/img/wn/${data.daily[i].weather[0].icon}.png">
             <div id="dailyStats">
                 <p>Temp: ${data.daily[i].temp.day}&deg;F</p>
-                <p>Wind: ${data.daily[i].wind_speed}</p>
-                <p>Humidity: ${data.daily[i].humidity}</p>
+                <p>Wind: ${data.daily[i].wind_speed} MPH</p>
+                <p>Humidity: ${data.daily[i].humidity}%</p>
             </div>
         </div>
         `)
@@ -40,8 +40,8 @@ function weatherRender(data) {
             <h3>${cityQuery}</h3>
             <img src="https://openweathermap.org/img/wn/${data.current.weather[0].icon}.png">
             <p>Temp: ${data.current.temp}&deg;F</p>
-            <p>Wind: ${data.current.wind_speed}</p>
-            <p>Humidity: ${data.current.humidity}</p>
+            <p>Wind: ${data.current.wind_speed} MPH</p>
+            <p>Humidity: ${data.current.humidity}%</p>
             <p>UV Index: ${data.current.uvi}</p>
         </div>
         <h3>Five day forecast:</h3>
