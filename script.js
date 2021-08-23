@@ -37,14 +37,14 @@ function weatherRender(data) {
     weatherEl.empty();
     weatherEl.append(`
         <div class="col border border-dark" id="current">
-            <h3>${cityQuery}</h3>
+            <p class="fs-3 fw-bold">${cityQuery} (${moment().format("M/D/YYYY")})</p>
             <img src="https://openweathermap.org/img/wn/${data.current.weather[0].icon}.png">
             <p>Temp: ${data.current.temp}&deg;F</p>
             <p>Wind: ${data.current.wind_speed} MPH</p>
             <p>Humidity: ${data.current.humidity}%</p>
             <p>UV Index: ${data.current.uvi}</p>
         </div>
-        <h3>Five day forecast:</h3>
+        <p class="fs-4 fw-bold">5-Day Forecast:</p>
         <div class="col">
             <div class="row justify-content-between" id="forecast">
                 ${fiveDayRender(data)}
