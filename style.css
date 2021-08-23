@@ -1,23 +1,9 @@
-* {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
 header {
     background-image: linear-gradient(to right, cornflowerblue, midnightblue);
     color: white;
 }
 
-h2 {
-    text-align: center;
-    padding: 5px;
-}
-
-.h4 {
-    font-weight: 700;
-}
-
 .forecast {
-    background-color: #557089;
+    background-color: #384659;
     color: #fff;
-    margin: 0 3px 0 3px;
 }
