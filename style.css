@@ -3,9 +3,16 @@ header {
     color: white;
 }
 
-.scrollbar {
-    overflow: auto;
-    white-space: nowrap;
+#cityQuery {
+    margin-bottom: 5px;
+}
+
+#searchButton{
+    margin-bottom: 5px;
+}
+
+.btn-secondary {
+    margin-bottom: 5px;
 }
 
 .forecast {
@@ -23,13 +30,25 @@ header {
 }
 .moderate {
     background-color: #fdf351;
+    color: white;
+    border-radius: 3px;
+    padding: 3px 5px 3px 5px;
 }
 .high {
     background-color: #e39033;
+    color: white;
+    border-radius: 3px;
+    padding: 3px 5px 3px 5px;
 }
 .veryhigh {
     background-color: #d34327;
+    color: white;
+    border-radius: 3px;
+    padding: 3px 5px 3px 5px;
 }
 .extreme {
     background-color: #aa6ba1;
+    color: white;
+    border-radius: 3px;
+    padding: 3px 5px 3px 5px;
 }
