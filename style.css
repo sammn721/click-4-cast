@@ -14,3 +14,22 @@ header {
     display: inline-block;
     float: none;
 }
+
+.low {
+    background-color: #5da541;
+    color: white;
+    border-radius: 3px;
+    padding: 3px 5px 3px 5px;
+}
+.moderate {
+    background-color: #fdf351;
+}
+.high {
+    background-color: #e39033;
+}
+.veryhigh {
+    background-color: #d34327;
+}
+.extreme {
+    background-color: #aa6ba1;
+}

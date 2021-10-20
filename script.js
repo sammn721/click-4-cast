@@ -35,6 +35,19 @@ function fiveDayRender(data) {
 }
 
 function weatherRender(data) {
+    var UVIndex = data.current.uvi;
+    var UVColor;
+    if (UVIndex < 3 ) {
+        UVColor = "low"
+    } else if (UVIndex >= 3 && UVIndex < 6) {
+        UVColor = "moderate"
+    } else if (UVIndex >= 6 && UVIndex < 8) {
+        UVColor = "high"
+    } else if (UVIndex >= 8 && UVIndex < 11) {
+        UVColor = "veryhigh"
+    } else {
+        UVColor = "extreme"
+    }
     weatherEl.empty();
     weatherEl.append(`
         <div class="col border border-dark" id="current">
@@ -43,7 +56,7 @@ function weatherRender(data) {
             <p>Temp: ${data.current.temp}&deg;F</p>
             <p>Wind: ${data.current.wind_speed} MPH</p>
             <p>Humidity: ${data.current.humidity}%</p>
-            <p>UV Index: ${data.current.uvi}</p>
+            <p>UV Index: <span class="${UVColor}">${UVIndex}</span></p>
         </div>
         <p class="fs-4 fw-bold">5-Day Forecast:</p>
         <div class="col">
@@ -80,7 +93,7 @@ function saveCities() {
 
 function savedCitiesRender(array) {
     for (var i = 0; i < array.length; i++) {
-        savedCitiesEl.append(`<button class="button">${array[i]}</button>`);
+        savedCitiesEl.append(`<button type="button" class="btn btn-secondary">${array[i]}</button>`);
     }
 }
     
