@@ -3,7 +3,14 @@ header {
     color: white;
 }
 
+.scrollbar {
+    overflow: auto;
+    white-space: nowrap;
+}
+
 .forecast {
     background-color: #384659;
     color: #fff;
+    display: inline-block;
+    float: none;
 }

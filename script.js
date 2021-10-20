@@ -2,11 +2,12 @@ var openWeatherKey = "b630f221bd1295ec02183f26749a279c";
 var openWeatherURL = "https://api.openweathermap.org/data/2.5/";
 
 var citySearchEl = $('#citySearch');
-var searchedCitiesEl = $('#searchedCities');
+var savedCitiesEl = $('#savedCities');
 var weatherEl = $('#weather');
 
 var cityQuery;
-var searchedCities = JSON.parse(localStorage.getItem('searchedCities')) || [];
+var isCity = false;
+var savedCities = JSON.parse(localStorage.getItem('savedCities')) || [];
 
 function errorRender() {
     weatherEl.empty();
@@ -17,7 +18,7 @@ function errorRender() {
 
 function fiveDayRender(data) {
     var fiveDay = [];
-    for(var i = 0; i < 5; i++) {
+    for(var i = 1; i < 6; i++) {
         fiveDay.push(`
         <div class="col p-2 mx-3 forecast">
             <p class="fs-5 fw-bold">${moment(data.daily[i].dt, "X").format("M/D/YYYY")}</p>
@@ -46,7 +47,7 @@ function weatherRender(data) {
         </div>
         <p class="fs-4 fw-bold">5-Day Forecast:</p>
         <div class="col">
-            <div class="row justify-content-between" id="forecast">
+            <div class="d-flex row justify-content-between flex-nowrap overflow-auto">
                 ${fiveDayRender(data)}
             </div>
         </div>
@@ -62,18 +63,25 @@ function citySearchRender() {
 }
 
 function saveCities() {
-    localStorage.setItem('searchedCities', JSON.stringify(searchedCities));
+    var newList = [];
+
+    newList.unshift(cityQuery);
+    console.log(cityQuery)
+    console.log(newList)
+
+    if (!newList.includes(cityQuery)) {
+        newList.unshift(cityQuery);
+    }
+
+    localStorage.setItem('savedCities', JSON.stringify(newList));
+
+    savedCitiesRender(newList);
 }
 
-// INCOMPLETE
-function searchedCitiesRender() {
-    citySearchRender();
-    for(var i = 0; i < searchedCities.length; i++) {
-        searchedCitiesEl.append(`
-        <button type="button" class="btn" value="${searchedCities[i]}">${searchedCities[i]}</button>
-        `);
+function savedCitiesRender(array) {
+    for (var i = 0; i < array.length; i++) {
+        savedCitiesEl.append(`<button class="button">${array[i]}</button>`);
     }
-    saveCities();
 }
     
 function searchByCoords(lat, lon) {
@@ -87,9 +95,10 @@ function searchByCoords(lat, lon) {
             }
             return response.json();
         })
-        .then(function (city) {
-            weatherRender(city);
-            // saveCities();
+        .then(function (response) {
+            weatherRender(response);
+            isCity = true;
+            saveCities(response);
         })
         .catch(function (error) {
             return error;
@@ -109,6 +118,7 @@ function searchByCity() {
         })
         .then(function (city) {
             cityQuery = city.name;
+            console.log(cityQuery)
             var cityLat = `lat=${city.coord.lat}`;
             var cityLon = `lon=${city.coord.lon}`;
             searchByCoords(cityLat, cityLon);
