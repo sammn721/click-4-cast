@@ -93,7 +93,7 @@ function saveCities() {
 
 function savedCitiesRender(array) {
     for (var i = 0; i < array.length; i++) {
-        savedCitiesEl.append(`<button type="button" class="btn btn-secondary">${array[i]}</button>`);
+        savedCitiesEl.append(`<button type="button" class="btn btn-secondary" data-saved-city="${array[i]}">${array[i]}</button>`);
     }
 }
     
@@ -146,6 +146,17 @@ function citySearchSubmit(event) {
     cityQuery = $('#cityQuery').val();
     searchByCity();
 }
+
+savedCitiesEl.click(function (event) {
+    var target = event.target.getAttribute("data-saved-city");
+
+    if (target === null) {
+        return
+    } else {
+        cityQuery = target;
+        searchByCity(target);
+    }
+})
 
 citySearchEl.on("submit", citySearchSubmit)
 
