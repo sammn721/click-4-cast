@@ -76,22 +76,27 @@ function citySearchRender() {
 }
 
 function saveCities() {
-    var newList = [];
+    var oldSaved = JSON.parse(localStorage.getItem('savedCities'));
+    var newSaved = [];
 
-    newList.unshift(cityQuery);
-    console.log(cityQuery)
-    console.log(newList)
-
-    if (!newList.includes(cityQuery)) {
-        newList.unshift(cityQuery);
+    if (!Array.isArray(oldSaved)) {
+        newSaved.unshift(cityQuery);
+    } else {
+        newSaved = oldSaved;
+        
     }
 
-    localStorage.setItem('savedCities', JSON.stringify(newList));
+    if (!newSaved.includes(cityQuery)) {
+        newSaved.unshift(cityQuery);
+    }
 
-    savedCitiesRender(newList);
+    localStorage.setItem('savedCities', JSON.stringify(newSaved));
+
+    savedCitiesRender(newSaved);
 }
 
 function savedCitiesRender(array) {
+    $('#savedCities').html('');
     for (var i = 0; i < array.length; i++) {
         savedCitiesEl.append(`<button type="button" class="btn btn-secondary" data-saved-city="${array[i]}">${array[i]}</button>`);
     }
@@ -131,7 +136,6 @@ function searchByCity() {
         })
         .then(function (city) {
             cityQuery = city.name;
-            console.log(cityQuery)
             var cityLat = `lat=${city.coord.lat}`;
             var cityLon = `lon=${city.coord.lon}`;
             searchByCoords(cityLat, cityLon);
